@@ -1,0 +1,12 @@
+[Unit]
+Description=Pentrazy AI Service
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/pentrazy
+Environment="PATH=/home/ubuntu/pentrazy/venv/bin"
+ExecStart=/home/ubuntu/pentrazy/venv/bin/gunicorn --workers 3 --bind unix:/tmp/pentrazy.sock -m 007 run:app
+
+[Install]
+WantedBy=multi-user.target
